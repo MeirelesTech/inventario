@@ -1,0 +1,77 @@
+version: "3"
+
+services:    
+  database:
+    container_name: db-inventario-aiops
+    hostname: db-inventario-aiops
+    image: postgres:13.4-alpine
+    restart: always
+    user: postgres
+    volumes:
+      - postgresInventario:/var/lib/postgresql/data
+    environment:
+      - LC_ALL=C.UTF-8
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=db-inventario-aiops
+      - TZ=America/Sao_Paulo
+    ports:
+      - 5432:5432
+    networks:
+      - postgres
+
+  pgadmin:
+    container_name: pgadmin-inventario-aiops
+    hostname: pgadmin-inventario-aiops
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    volumes:
+       - pgadminInventario:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 5050:80
+    networks:
+      - postgres
+    depends_on:
+      - database
+      
+  backend:
+    container_name: backend-inventario-aiops
+    hostname: backend-inventario-aiops
+    build: ./backend
+    restart: always
+    volumes:
+      - backend/:/backend
+    environment:
+      DB_HOST: db-inventario-aiops
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DJANGO_SUPERUSER_PASSWORD: admin
+    working_dir: /backend
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    networks:
+      - postgres
+    depends_on:
+      - database
+
+  # frontend:
+  #   container_name: frontend-inventario-aiops
+  #   hostname: frontend-inventario-aiops
+  #   image: node:8.9
+  #   command: sh entrypoint.sh
+  #   working_dir: /frontend
+  #   volumes:
+  #     - frontend/:/frontend
+
+volumes:
+  postgresInventario:
+  pgadminInventario:
+  backend:
+
+networks:
+  postgres:

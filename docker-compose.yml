@@ -44,7 +44,7 @@ services:
     build: ./backend
     restart: always
     volumes:
-      - backend/:/backend
+      - ./backend:/backend
     environment:
       DB_HOST: db-inventario-aiops
       DB_USER: postgres

@@ -6,8 +6,8 @@
  ENV PYTHONDONTWRITEBYTECODE 1
  ENV PYTHONUNBUFFERED 1
 
- ADD requirements.txt /backend
- ADD . /backend
+ COPY requirements.txt /backend
+ COPY . /backend
  
  RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -17,8 +17,8 @@
  RUN pip install -r requirements.txt
  EXPOSE 8000
  
- ADD entrypoint.sh /backend
+#  COPY entrypoint.sh /backend
  RUN chmod +x entrypoint.sh
-
  ENTRYPOINT ["/backend/entrypoint.sh"]
+ 
 #  CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]

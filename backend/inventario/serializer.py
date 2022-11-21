@@ -23,6 +23,7 @@ class ContaServicoSerializer(serializers.ModelSerializer):
   class Meta:
     model = ContaServico
     fields = '__all__'
+    depth = 1
 
 class IntegracaoSerializer(serializers.ModelSerializer):
   class Meta:
@@ -38,6 +39,7 @@ class InventarioSerializer(serializers.ModelSerializer):
   class Meta:
     model = Inventario
     fields = '__all__'
+    depth = 1
 
 class InventarioListaSerializer(serializers.ModelSerializer):
   class Meta:

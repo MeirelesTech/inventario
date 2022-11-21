@@ -50,7 +50,7 @@ class ServidoresAdmin(admin.ModelAdmin):
 admin.site.register(Servidor, ServidoresAdmin)
 
 class IventarioAdmin(admin.ModelAdmin):
-  list_display = ('id', 'projeto', 'projeto_descricao', 'conta_servico', 'integracao', 'servidor')
+  list_display = ('id', 'projeto', 'projeto_descricao')
   list_select_related = True
   list_display_links = ('id', 'projeto')
   search_fields = ('projeto',)
@@ -58,5 +58,6 @@ class IventarioAdmin(admin.ModelAdmin):
 
   def projeto_descricao(self, obj):
     return obj.projeto.descricao
+  
 
 admin.site.register(Inventario, IventarioAdmin)

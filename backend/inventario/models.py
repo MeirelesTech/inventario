@@ -89,13 +89,12 @@ class Servidor(models.Model):
 
 class Inventario(models.Model):
   projeto = models.ForeignKey(Projeto, on_delete=models.CASCADE, related_name='projetos', verbose_name='Projeto')
-  conta_servico = models.ForeignKey(ContaServico, on_delete=models.CASCADE, verbose_name='Conta de Serviço')
-  integracao = models.ForeignKey(Integracao, on_delete=models.CASCADE, verbose_name='Integração')
-  servidor = models.ForeignKey(Servidor, on_delete=models.CASCADE, verbose_name='Servidor')
+  conta_servico = models.ManyToManyField(ContaServico, related_name='conta_servico',  verbose_name='Conta de Serviço')
+  integracao = models.ManyToManyField(Integracao, related_name='integracao',  verbose_name='Integração')
+  servidor = models.ManyToManyField(Servidor, related_name='servidor',  verbose_name='Servidor')
 
   class Meta:
     db_table = "inventario_inventarios"
     verbose_name = "Inventário"
     verbose_name_plural = "Inventários"
-    unique_together = ('projeto', 'conta_servico', 'integracao', 'servidor')
     

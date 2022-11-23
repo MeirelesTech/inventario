@@ -39,7 +39,6 @@ class InventarioSerializer(serializers.ModelSerializer):
   class Meta:
     model = Inventario
     fields = '__all__'
-    depth = 1
 
 class InventarioListaSerializer(serializers.ModelSerializer):
   class Meta:

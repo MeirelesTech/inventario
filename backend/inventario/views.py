@@ -63,9 +63,35 @@ class ServidoresViewSet(viewsets.ModelViewSet):
   serializer_class = ServidorSerializer
 
 class InventarioViewSet(viewsets.ModelViewSet):
-  queryset = Inventario.objects.all()
   serializer_class = InventarioSerializer
+  queryset = Inventario.objects.all()
 
+  def create(self, request, *args, **kwargs):
+    data = request.data
+
+    novo_inventario = Inventario.objects.create(
+      projeto_id=data["projeto"])
+
+    novo_inventario.save()
+    
+    if data["conta_servico"]:
+      for conta in data["conta_servico"]:
+        conta_obj = ContaServico.objects.get(id=conta["id"])
+        novo_inventario.conta_servico.add(conta_obj)
+
+    if data["integracao"]:
+      for integracao in data["integracao"]:
+        integracao_obj = Integracao.objects.get(id=integracao["id"])
+        novo_inventario.integracao.add(integracao_obj)
+    
+    if data["servidor"]:
+      for servidor in data["servidor"]:
+        servidor_obj = Servidor.objects.get(id=servidor["id"])
+        novo_inventario.servidor.add(servidor_obj)
+
+    serializer = InventarioSerializer(novo_inventario)
+    return Response(serializer.data)
+    
 class InventarioListaViewSet(generics.ListAPIView):
   def get_queryset(self):
     queryset = Inventario.objects.all()

@@ -1,5 +1,6 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
+from rest_framework.exceptions import NotFound
 from inventario.models import (
   Empresa,
   Inventario,
@@ -44,14 +45,14 @@ class ContasServicosViewSet(viewsets.ModelViewSet):
   def update(self, request, pk):
     data = request.data
 
-    conta = ContaServico.objects.get(id=pk)
-    conta.nome = data["nome"]
-    conta.descricao = data["descricao"]
-    conta.observacao = data["observacao"]
-    conta.empresa_id = data["empresa"]
-    conta.save()
+    conta_obj = ContaServico.objects.get(id=pk)
+    conta_obj.nome = data["nome"]
+    conta_obj.descricao = data["descricao"]
+    conta_obj.observacao = data["observacao"]
+    conta_obj.empresa_id = data["empresa"]
+    conta_obj.save()
 
-    serializer = ContaServicoSerializer(conta)
+    serializer = ContaServicoSerializer(conta_obj)
     return Response(serializer.data)
     
 class IntegracoesViewSet(viewsets.ModelViewSet):
@@ -91,7 +92,41 @@ class InventarioViewSet(viewsets.ModelViewSet):
 
     serializer = InventarioSerializer(novo_inventario)
     return Response(serializer.data)
-    
+  
+  def update(self, request, pk):
+    data = request.data
+
+    inventario_obj = Inventario.objects.get(id=pk)
+    inventario_obj.projeto_id = data["projeto"]
+    inventario_obj.save
+
+    conta_servico_lista = []
+
+    for conta in data["conta_servico"]:
+      conta_obj = ContaServico.objects.get(id=conta["id"])
+      conta_servico_lista.append(conta_obj)
+
+    inventario_obj.conta_servico.set(conta_servico_lista)
+
+    integracao_lista = []
+
+    for integracao in data["integracao"]:
+      integracao_obj = Integracao.objects.get(id=integracao["id"])
+      integracao_lista.append(integracao_obj)
+      
+    inventario_obj.integracao.set(integracao_lista)
+
+    servidor_lista = []
+
+    for servidor in data["servidor"]:
+      servidor_obj = Servidor.objects.get(id=servidor["id"])
+      servidor_lista.append(servidor_obj)
+      
+    inventario_obj.servidor.set(servidor_lista)
+
+    serializer = InventarioSerializer(inventario_obj)
+    return Response(serializer.data)
+
 class InventarioListaViewSet(generics.ListAPIView):
   def get_queryset(self):
     queryset = Inventario.objects.all()

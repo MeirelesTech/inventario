@@ -4,7 +4,9 @@ class Empresa(models.Model):
   nome = models.CharField(max_length=30, unique=True,  verbose_name='Nome')
   descricao = models.CharField(max_length=150, verbose_name='Descrição')
   observacao = models.CharField(max_length=255, verbose_name='Observação', null=True)
-
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  
   def __str__(self):
       return self.nome
 
@@ -26,6 +28,8 @@ class Projeto(models.Model):
   area_negocio = models.CharField(max_length=30, verbose_name='Área de Negócio')
   observacao = models.CharField(max_length=255, verbose_name='Observação', null=True)
   tipo = models.CharField(max_length=1, choices=TIPO, blank=False, null=False, default='A', verbose_name='Tipo')
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
       return self.nome
@@ -39,6 +43,8 @@ class ContaServico(models.Model):
   descricao = models.CharField(max_length=150, verbose_name='Descrição')
   empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
   observacao = models.CharField(max_length=255, verbose_name='Observação', null=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
       return self.nome
@@ -51,6 +57,8 @@ class Integracao(models.Model):
   nome = models.CharField(max_length=30, unique=True, verbose_name='Nome')
   descricao = models.CharField(max_length=150, verbose_name='Descrição')
   observacao = models.CharField(max_length=255, verbose_name='Observação', null=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
       return self.nome
@@ -78,6 +86,8 @@ class Servidor(models.Model):
   empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE,  verbose_name='Empresa')
   ambiente = models.CharField(max_length=3, choices=AMBIENTE, blank=False, null=False, default='PRD',  verbose_name='Ambiente')
   observacao = models.CharField(max_length=255,  verbose_name='Observação', null=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
       return self.nome
@@ -92,6 +102,8 @@ class Inventario(models.Model):
   conta_servico = models.ManyToManyField(ContaServico, related_name='conta_servico',  verbose_name='Conta de Serviço')
   integracao = models.ManyToManyField(Integracao, related_name='integracao',  verbose_name='Integração')
   servidor = models.ManyToManyField(Servidor, related_name='servidor',  verbose_name='Servidor')
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
   class Meta:
     db_table = "inventario_inventarios"

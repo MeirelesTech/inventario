@@ -1,0 +1,40 @@
+.tableInfo{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo{
+  img{
+    fill: white;
+    color: white;
+  }
+}
+
+.link{
+  transition: 0.3s;
+
+  a{
+    text-decoration: none;
+    color: rgb(22, 22, 22);
+  }
+
+  .text{
+    color: #fff;
+  }
+
+
+  .icon{
+    color: #f1ff00;
+    transition: 0.3s;
+  }
+  .icon:hover{
+    color: #7e7e78;
+    transform: translateY(-2px);
+  }
+}
+
+.link:hover{
+  transform: translateY(-2px);
+  background-color: #464643;
+}

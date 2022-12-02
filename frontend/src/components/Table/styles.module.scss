@@ -1,0 +1,71 @@
+.datatable {
+  padding: 20px;
+  margin-top: 4rem;
+  height: 85vh;
+
+  .datagrid{
+    color: black;
+  }
+
+  footer{
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    button{
+      background-color: transparent;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+
+      a{
+        text-decoration: none;
+      }
+    }
+
+    .editButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: rgb(0, 139, 72);
+      border: 1px dotted rgba(0, 139, 72, 0.596);
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &:hover{
+        filter: brightness(1.5);
+      }
+    }
+    .viewButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: rgb(24, 38, 232);
+      border: 1px dotted rgba(24, 38, 232, 0.596);
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &:hover{
+        filter: brightness(1.5);
+      }
+    }
+    
+    .deleteButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: crimson;
+      border: 1px dotted rgba(220, 20, 60, 0.6);
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &:hover{
+        filter: brightness(1.5);
+      }
+    }
+  }
+}

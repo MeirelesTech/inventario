@@ -12,8 +12,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Button from "@mui/material/Button";
-import { ListItem,ListItemButton,ListItemIcon,ListItemText} from "@mui/material";
-import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
+import { ListItem,ListItemButton,ListItemIcon,ListItemText } from "@mui/material";
+import ListAltRoundedIcon from "@mui/icons-material/ListAltRounded";
 import SupervisorAccountRoundedIcon from "@mui/icons-material/SupervisorAccountRounded";
 import TerminalRoundedIcon from "@mui/icons-material/TerminalRounded";
 import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
@@ -22,6 +22,9 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import Tooltip from "@mui/material/Tooltip";
 import styles from "./styles.module.scss";
 import { useState } from "react";
+import Link from "next/link";
+import Image from 'next/image'
+
 
 const drawerWidth = 240;
 
@@ -97,11 +100,15 @@ const Drawer = styled(MuiDrawer, {
 
 interface SidebarProps {
   tableName: string;
-  TableIcon: any
+  TableIcon: any;
   handleOpenNewProjectModal: () => void;
 }
 
-export function Sidebar({ tableName, handleOpenNewProjectModal, TableIcon }: SidebarProps) {
+export function Sidebar({
+  tableName,
+  handleOpenNewProjectModal,
+  TableIcon,
+}: SidebarProps) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
@@ -113,13 +120,11 @@ export function Sidebar({ tableName, handleOpenNewProjectModal, TableIcon }: Sid
     setOpen(false);
   };
 
-  
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{backgroundColor: '#292a2d'}}>
+        <Toolbar sx={{ backgroundColor: "#292a2d" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -145,32 +150,43 @@ export function Sidebar({ tableName, handleOpenNewProjectModal, TableIcon }: Sid
               {tableName}
             </div>
 
-
-            <a href="/" className={styles.logo}>
-              <img src="assets/vtalLogoWhite.svg" width="80px" />
-            </a>
+            <Link href="/">
+              <a className={styles.logo}>
+              <Image
+              src="/assets/vtalLogoWhite.svg"
+              width={80}
+              height={50}
+              alt={'Logo da V.tal'}
+              />
+              </a>
+            </Link>
 
             <Button
               onClick={handleOpenNewProjectModal}
               variant="contained"
               color="success"
+              sx={{marginTop: 1, marginBottom: 1}}
             >
               Adicionar
             </Button>
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} PaperProps={{
-        sx:{
-          backgroundColor: '#191918'
-        }
-      }}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        PaperProps={{
+          sx: {
+            backgroundColor: "#191918",
+          },
+        }}
+      >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
-              <ChevronLeftIcon sx={{color: '#f2f2f2'}}/>
+              <ChevronLeftIcon sx={{ color: "#f2f2f2" }} />
             )}
           </IconButton>
         </DrawerHeader>
@@ -181,191 +197,205 @@ export function Sidebar({ tableName, handleOpenNewProjectModal, TableIcon }: Sid
             disablePadding
             sx={{ display: "block" }}
           >
-            <a href="/">
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <Tooltip title="Inventário">
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <ListAltRoundedIcon className={styles.icon}/>
-                  </ListItemIcon>
-                </Tooltip>
-                <ListItemText primary="Inventário" sx={{ opacity: open ? 1 : 0 }} className={styles.text} />
-              </ListItemButton>
-            </a>
+            <Link href="/">
+              <a>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <Tooltip title="Inventário">
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <ListAltRoundedIcon className={styles.icon} />
+                    </ListItemIcon>
+                  </Tooltip>
+                  <ListItemText
+                    primary="Inventário"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    className={styles.text}
+                  />
+                </ListItemButton>
+              </a>
+            </Link>
           </ListItem>
           <ListItem
             className={styles.link}
             disablePadding
             sx={{ display: "block" }}
           >
-            <a href="/projects">
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <Tooltip title="Projetos">
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <TerminalRoundedIcon className={styles.icon} />
-                  </ListItemIcon>
-                </Tooltip>
-                <ListItemText
-                  primary="Projetos"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  className={styles.text}
-                />
-              </ListItemButton>
-            </a>
+            <Link href="/projects">
+              <a>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <Tooltip title="Projetos">
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <TerminalRoundedIcon className={styles.icon} />
+                    </ListItemIcon>
+                  </Tooltip>
+                  <ListItemText
+                    primary="Projetos"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    className={styles.text}
+                  />
+                </ListItemButton>
+              </a>
+            </Link>
           </ListItem>
           <ListItem
             className={styles.link}
             disablePadding
             sx={{ display: "block" }}
           >
-            <a href="/integrations">
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <Tooltip title="Integrações">
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <AccountTreeRoundedIcon className={styles.icon} />
-                  </ListItemIcon>
-                </Tooltip>
-                <ListItemText
-                  primary="Integrações"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  className={styles.text}
-                />
-              </ListItemButton>
-            </a>
+            <Link href="/integrations">
+              <a>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <Tooltip title="Integrações">
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <AccountTreeRoundedIcon className={styles.icon} />
+                    </ListItemIcon>
+                  </Tooltip>
+                  <ListItemText
+                    primary="Integrações"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    className={styles.text}
+                  />
+                </ListItemButton>
+              </a>
+            </Link>
           </ListItem>
-          
-          
 
           <ListItem
             className={styles.link}
             disablePadding
             sx={{ display: "block" }}
           >
-            <a href="/servers">
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <Tooltip title="Servidores">
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <DnsRoundedIcon className={styles.icon} />
-                  </ListItemIcon>
-                </Tooltip>
-                <ListItemText
-                  primary="Servidores"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  className={styles.text}
-                />
-              </ListItemButton>
-            </a>
+            <Link href="/servers">
+              <a>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <Tooltip title="Servidores">
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <DnsRoundedIcon className={styles.icon} />
+                    </ListItemIcon>
+                  </Tooltip>
+                  <ListItemText
+                    primary="Servidores"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    className={styles.text}
+                  />
+                </ListItemButton>
+              </a>
+            </Link>
           </ListItem>
           <ListItem
             className={styles.link}
             disablePadding
             sx={{ display: "block" }}
           >
-            <a href="/serviceAccounts">
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <Tooltip title="Contas de serviço">
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <SupervisorAccountRoundedIcon className={styles.icon} />
-                  </ListItemIcon>
-                </Tooltip>
-                <ListItemText
-                  primary="Contas de serviço"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  className={styles.text}
-                />
-              </ListItemButton>
-            </a>
+            <Link href="/serviceAccounts">
+              <a>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <Tooltip title="Contas de serviço">
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <SupervisorAccountRoundedIcon className={styles.icon} />
+                    </ListItemIcon>
+                  </Tooltip>
+                  <ListItemText
+                    primary="Contas de serviço"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    className={styles.text}
+                  />
+                </ListItemButton>
+              </a>
+            </Link>
           </ListItem>
           <ListItem
             className={styles.link}
             disablePadding
             sx={{ display: "block" }}
           >
-            <a href="/companies">
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <Tooltip title="Empresas">
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <ApartmentRoundedIcon className={styles.icon} />
-                  </ListItemIcon>
-                </Tooltip>
-                <ListItemText
-                  primary="Empresas"
-                  sx={{ opacity: open ? 1 : 0 }}
-                  className={styles.text}
-                />
-              </ListItemButton>
-            </a>
+            <Link href="/companies">
+              <a>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <Tooltip title="Empresas">
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <ApartmentRoundedIcon className={styles.icon} />
+                    </ListItemIcon>
+                  </Tooltip>
+                  <ListItemText
+                    primary="Empresas"
+                    sx={{ opacity: open ? 1 : 0 }}
+                    className={styles.text}
+                  />
+                </ListItemButton>
+              </a>
+            </Link>
           </ListItem>
         </List>
       </Drawer>

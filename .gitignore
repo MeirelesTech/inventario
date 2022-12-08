@@ -56,7 +56,8 @@ wheels/
 
 # Installer logs 
 pip-log.txt 
-pip-delete-this-directory.txt 
+pip-delete-this-directory.txt
+logs 
 
 # Unit test / coverage reports 
 htmlcov/ 
@@ -93,13 +94,6 @@ venv.bak/
 
 # mypy 
 .mypy_cache/ 
-
-# Sublime Text # 
-*.tmlanguage.cache 
-*.tmPreferences.cache 
-*.stTheme.cache 
-*.sublime-workspace 
-*.sublime-project 
 
 # sftp configuration file 
 sftp-config.json 

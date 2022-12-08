@@ -8,15 +8,15 @@ services:
     restart: always
     user: postgres
     volumes:
-      - postgresInventario:/var/lib/postgresql/data
+      - ./.data/postgresInventario:/var/lib/postgresql/data
     environment:
       - LC_ALL=C.UTF-8
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=fce02f51134186c997de29986f805343
       - POSTGRES_USER=postgres
       - POSTGRES_DB=db-inventario-aiops
       - TZ=America/Sao_Paulo
     ports:
-      - 5432:5432
+      - 5438:5432
     networks:
       - postgres
 
@@ -26,7 +26,7 @@ services:
     image: dpage/pgadmin4
     restart: unless-stopped
     volumes:
-       - pgadminInventario:/var/lib/pgadmin
+       - ./.data/pgadminInventario:/var/lib/pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
@@ -48,7 +48,7 @@ services:
     environment:
       DB_HOST: db-inventario-aiops
       DB_USER: postgres
-      DB_PASSWORD: postgres
+      DB_PASSWORD: fce02f51134186c997de29986f805343
       DJANGO_SUPERUSER_PASSWORD: admin
     working_dir: /backend
     command: python manage.py runserver 0.0.0.0:8000

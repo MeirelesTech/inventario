@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color-1: #fff;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--primary-color-1);
+}
+
+.home {
+  display: flex;
+
+  .home-container {
+    flex: 6;
+  }
+}
+
+.react-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .react-modal-div {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .react-modal-content {
+    width: 100%;
+    max-width: 576px;
+    background: #f2f2f2;
+    padding: 1rem;
+    position: relative;
+    border-radius: 0.25rem;
+
+    .react-modal-header{
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .icon{
+      font-size: 2.5rem;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      h2 {
+        color: rgb(32, 32, 32);
+        font-size: 1.5rem;
+      }
+
+      textarea{
+        resize: vertical;
+      }
+
+      .react-modal-options {
+        width: 100%;
+        padding: 0 0.4rem;
+        height: 2.2rem;
+        border-radius: 0.25rem;
+
+        border: 1px solid #d7d7d7;
+        background-color: #ffffff;
+
+        font-weight: 400;
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+
+        & + .react-modal-options {
+          margin-top: 1rem;
+        }
+      }
+
+      button {
+        width: 45%;
+        padding: 0 1.5rem;
+        height: 3rem;
+
+        background-color: #289c64;
+        color: #fff;
+        border-radius: 0.25rem;
+        border: 0;
+
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+
+        cursor: pointer;
+
+        transition: filter 0.3s;
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+      }
+    }
+  }
+
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 25px;
+  }
+}

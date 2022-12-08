@@ -1,0 +1,19 @@
+.subtitle{
+  font-weight: normal;
+}
+
+.divFlex{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  p{
+    background-color: #8e98a72f;
+    
+
+    margin-right: 0.5rem;
+    padding: 0.4rem;
+
+    border-radius: 4rem;
+
+  }
+}

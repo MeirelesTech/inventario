@@ -23,15 +23,10 @@ interface clickedTableProps {
   nome: string;
   descricao: string;
   observacao: string;
-  empresa: number;
+  empresa: any;
 }
 
-export function AccountModal({
-  isOpen,
-  onRequestClose,
-  isAddMode,
-  clickedTableRow,
-}: NewAccountModalProps) {
+export function AccountModal({ isOpen,onRequestClose,isAddMode,clickedTableRow }: NewAccountModalProps) {
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [observacao, setObservacao] = useState("");

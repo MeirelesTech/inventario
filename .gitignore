@@ -80,6 +80,9 @@ celerybeat-schedule.*
 # SageMath parsed files 
 *.sage.py 
 
+# Pgadmin
+pgadmin4.db
+
 # Environments 
 .env 
 .venv 

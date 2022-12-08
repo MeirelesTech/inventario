@@ -98,7 +98,7 @@ DATABASES = {
         'PASSWORD': env('POSTGRES_PASSWORD'),
         # 'db' caso exista um serviço com esse nome.
         'HOST': env('DB_HOST'),
-        'PORT': 5438,
+        'PORT': 5432,
     }
 }
 

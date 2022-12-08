@@ -15,10 +15,8 @@
   && rm -rf /var/lib/apt/lists/* && python -m pip install -U pip
 
  RUN pip install -r requirements.txt
- EXPOSE 8000
+ EXPOSE 8010
  
-#  COPY entrypoint.sh /backend
  RUN chmod +x entrypoint.sh
  ENTRYPOINT ["/backend/entrypoint.sh"]
- 
-#  CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+

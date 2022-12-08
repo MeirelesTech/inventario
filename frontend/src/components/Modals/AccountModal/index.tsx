@@ -54,7 +54,7 @@ export function AccountModal({ isOpen,onRequestClose,isAddMode,clickedTableRow }
         setNome(row.nome);
         setDescricao(row.descricao);
         setObservacao(row.observacao);
-        setEmpresa(row.empresa.id); // erro ignorável
+        setEmpresa(row.empresa.id);
         setClickedTableRowId(row.id);
       } else {
         setVariablesToZero();

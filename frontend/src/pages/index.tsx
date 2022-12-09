@@ -54,24 +54,35 @@ export default function Home() {
         return row.map((array: any) => array.nome);
       },
     },
-    // {
-    //   field: "empresa",
-    //   headerName: "Empresa",
-    //   width: 200,
-    //   valueGetter: (params) => {
-    //     console.log(params.row.conta_servico)
-    //     if (params.row.conta_servico.empresa == 1) {
-    //       return "V.tal";
-    //     } else {
-    //       return "Oi";
-    //     }
-    //   },
-    // },
+
     {
       field: "descricao",
       headerName: "Descrição Projeto",
       width: 250,
       valueGetter: (params) => params.row.projeto.descricao,
+    },
+
+    {
+      field: "tipo",
+      headerName: "Tipo de Projeto",
+      width: 200,
+      valueGetter: (params) => {
+        if (params.row.projeto.tipo == 'A') {
+          return "Ambiente";
+        } 
+        if (params.row.projeto.tipo == 'B') {
+          return "Aplicação";
+        } 
+        if (params.row.projeto.tipo == 'C') {
+          return "Automação";
+        } 
+        if (params.row.projeto.tipo == 'D') {
+          return "RPA Uipath";
+        } 
+        else {
+          return "Não foi possível indentificar";
+        }
+      },
     },
   ];
 

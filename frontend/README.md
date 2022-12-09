@@ -43,4 +43,6 @@
 
 - diminuir tamanho da table e trocar cor para branco do footer ✅
 
+- Adicionar tipo de projeto rota inventário
+
 - consertar put contas de serviço ✅

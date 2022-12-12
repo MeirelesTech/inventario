@@ -1,4 +1,4 @@
 #!/bin/bash
-# yarn install
+yarn install
 yarn build
 yarn start

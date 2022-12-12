@@ -1,10 +1,10 @@
-FROM node:16-alpine
+FROM inventario_frontend:v1
 
-RUN mkdir /frontend
+# RUN mkdir /frontend
 WORKDIR /frontend
 
 COPY package.json yarn.lock ./
-RUN yarn install
+# RUN yarn install
 
 COPY . /frontend
 

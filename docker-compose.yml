@@ -28,7 +28,7 @@ services:
       DB_HOST: db-inventario-aiops
       DB_USER: postgres
       DB_PASSWORD: fce02f51134186c997de29986f805343
-      DJANGO_SUPERUSER_PASSWORD: admin
+      DJANGO_SUPERUSER_PASSWORD: aiops2022
     working_dir: /backend
     command: python manage.py runserver 0.0.0.0:8010
     ports:

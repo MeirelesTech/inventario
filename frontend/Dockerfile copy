@@ -1,0 +1,10 @@
+FROM inventario_frontend_prod:v1
+
+# RUN mkdir /frontend
+WORKDIR /frontend
+
+COPY package.json yarn.lock ./
+
+COPY . /frontend
+
+CMD [ "yarn", "dev" ]

@@ -14,24 +14,8 @@ services:
       - POSTGRES_DB=db-inventario-aiops
       - TZ=America/Sao_Paulo
     ports:
-      - 5434:5434
-    command: -p 5434
-
-  pgadmin:
-    container_name: pgadmin-inventario-aiops
-    hostname: pgadmin-inventario-aiops
-    image: dpage/pgadmin4
-    restart: unless-stopped
-    volumes:
-       - ./.pgadmin:/var/lib/pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    ports:
-      - 5050:80
-    depends_on:
-      - database
+      - 5410:5410
+    command: -p 5410
       
   backend:
     container_name: backend-inventario-aiops
@@ -62,6 +46,6 @@ services:
     working_dir: /frontend
     command: sh entrypoint.sh
     ports:
-      - 3031:3000
+      - 3010:3010
     depends_on:
       - backend

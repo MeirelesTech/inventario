@@ -3,8 +3,8 @@
  RUN mkdir /backend
  WORKDIR /backend
  
- ENV PYTHONDONTWRITEBYTECODE 1
  ENV PYTHONUNBUFFERED 1
+ ENV PYTHONDONTWRITEBYTECODE 1
 
  COPY requirements.txt /backend
  COPY . /backend
@@ -16,7 +16,8 @@
 
  RUN pip install -r requirements.txt
  EXPOSE 8010
- 
+ ADD entrypoint.sh /backend
  RUN chmod +x entrypoint.sh
  ENTRYPOINT ["/backend/entrypoint.sh"]
+#  CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
